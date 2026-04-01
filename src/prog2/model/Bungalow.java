@@ -10,7 +10,7 @@ public class Bungalow extends Casa{
                     int habitacions, int placesPersones, int placesParquing,
                     boolean terrassa, boolean tv, boolean aireFred){
 
-        super(nom_, idAllotjament_, 7L, 4L, operatiu, iluminacio, mida, habitacions, placesPersones);
+        super(nom_, idAllotjament_,operatiu, iluminacio, 7L, 4L, mida, habitacions, placesPersones);
 
         setPlacesParquing(placesParquing);  // Utilitzem el set peer controlar així els valors possibles de placesParquing
         this.terrassa = terrassa;

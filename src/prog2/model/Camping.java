@@ -154,9 +154,9 @@ public class Camping implements InCamping {
      * @param connexioElectrica true si disposa de connexió elèctrica, false altrament.
      */
     @Override
-    public  void afegirParcela(String nom_, String idAllotjament_, float metres, boolean connexioElectrica) {
+    public  void afegirParcela(String nom_, String idAllotjament_,boolean operatiu, String iluminacio, float metres, boolean connexioElectrica) {
         // Generem objecte
-        Parcela parcela = new Parcela (nom_ ,idAllotjament_, metres, connexioElectrica);
+        Parcela parcela = new Parcela (nom_ ,idAllotjament_, operatiu, iluminacio, metres, connexioElectrica);
         // Afegim la parcela a la llista d'allotjaments
         llistaAllotjaments.add(parcela);
     }
@@ -175,9 +175,9 @@ public class Camping implements InCamping {
      * @param aireFred       true si disposa d'aire condicionat, false altrament.
      */
     @Override
-    public void afegirBungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
+    public void afegirBungalow(String nom_, String idAllotjament_,boolean operatiu, String iluminacio, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
         // Generem objecte
-        Bungalow bungalow = new Bungalow(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred);
+        Bungalow bungalow = new Bungalow(nom_, idAllotjament_,operatiu, iluminacio, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred);
         // Afegim el bungalow a la llista d'allotjaments
         llistaAllotjaments.add(bungalow);
     }
@@ -199,9 +199,9 @@ public class Camping implements InCamping {
      *                       (Altres paràmetres igual que `afegirBungalow`)
      */
     @Override
-    public void afegirBungalowPremium(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred, boolean serveisExtra, String codiWifi) {
+    public void afegirBungalowPremium(String nom_, String idAllotjament_,boolean operatiu, String iluminacio, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred, boolean serveisExtra, String codiWifi) {
         // Generem objecte
-        BungalowPremium bungalowPremium = new BungalowPremium(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred, serveisExtra, codiWifi);
+        BungalowPremium bungalowPremium = new BungalowPremium(nom_, idAllotjament_,operatiu, iluminacio, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred, serveisExtra, codiWifi);
         // // Afegim el bungalowPremium a la llista d'allotjaments
         llistaAllotjaments.add(bungalowPremium);
     }
@@ -219,9 +219,9 @@ public class Camping implements InCamping {
      *                       (Altres paràmetres igual que `afegirBungalow`)
      */
     @Override
-    public void afegirGlamping(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
+    public void afegirGlamping(String nom_, String idAllotjament_,boolean operatiu, String iluminacio, String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
         // Generem l'objecte
-        Glamping glamping = new Glamping(nom_, idAllotjament_, mida, habitacions, placesPersones, material, casaMascota);
+        Glamping glamping = new Glamping(nom_, idAllotjament_, operatiu, iluminacio, mida, habitacions, placesPersones, material, casaMascota);
         // Afegim el glamping a la llista d'allotjaments
         llistaAllotjaments.add(glamping);
     }
@@ -238,9 +238,9 @@ public class Camping implements InCamping {
      *                         (Altres paràmetres igual que `afegirBungalow`)
      */
     @Override
-    public void afegirMobilHome(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
+    public void afegirMobilHome(String nom_, String idAllotjament_,boolean operatiu, String iluminacio, String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
         // Generem l'objecte
-        MobilHome mobilHome = new MobilHome(nom_, idAllotjament_, mida, habitacions, placesPersones, terrassaBarbacoa);
+        MobilHome mobilHome = new MobilHome(nom_, idAllotjament_,operatiu, iluminacio, mida, habitacions, placesPersones, terrassaBarbacoa);
         // Afegim el mobilHome a la llista d'allotjaments
         llistaAllotjaments.add(mobilHome);
     }

@@ -2,7 +2,8 @@ package prog2.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import prog2.vista.ExcepcioReserva;
+import prog2.vista.ExcepcioCamping;
+
 
 import java.time.LocalDate;
 
@@ -38,7 +39,7 @@ public class CampingTest {
     // Clients
     // -------------------------
     @Test
-    void testAfegirClient() throws ExcepcioReserva {
+    void testAfegirClient() throws ExcepcioCamping {
         camping.afegirClient("Anna", "12345678A");
 
         assertEquals(1, camping.getNumClients());
