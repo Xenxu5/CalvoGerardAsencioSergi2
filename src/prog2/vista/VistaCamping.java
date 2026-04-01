@@ -6,7 +6,7 @@ public class VistaCamping {
 
     }
 
-    private void camping{
+    private void camping(){
 
     }
 }

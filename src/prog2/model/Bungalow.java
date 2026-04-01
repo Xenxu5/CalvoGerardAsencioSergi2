@@ -6,8 +6,11 @@ public class Bungalow extends Casa{
     private boolean terrassa, tv, aireFred;
 
     // Constructor
-    public Bungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred){
-        super(nom_, idAllotjament_, 7L, 4L, mida, habitacions, placesPersones);
+    public Bungalow(String nom_, String idAllotjament_, boolean operatiu, String iluminacio, String mida,
+                    int habitacions, int placesPersones, int placesParquing,
+                    boolean terrassa, boolean tv, boolean aireFred){
+
+        super(nom_, idAllotjament_, 7L, 4L, operatiu, iluminacio, mida, habitacions, placesPersones);
 
         setPlacesParquing(placesParquing);  // Utilitzem el set peer controlar així els valors possibles de placesParquing
         this.terrassa = terrassa;
@@ -50,22 +53,6 @@ public class Bungalow extends Casa{
 
     public void setAireFred(boolean aireFred) {
         this.aireFred = aireFred;
-    }
-
-    // Mètode concret d'objecte: correcteFuncionament()
-
-    /**
-     * Mètode que comprova el correcte funcionament de bungalow
-     * @return isCorrecte -> true o false (funciona correctament o no)
-     */
-    @Override
-    public boolean correcteFuncionament() {
-        boolean isCorrecte = false; // Inicialitzem en fals
-        if (aireFred) {  // Comprovació
-            isCorrecte = true;
-        }
-
-        return isCorrecte;
     }
 
     /**

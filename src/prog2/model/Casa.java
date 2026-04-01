@@ -7,9 +7,11 @@ public abstract class Casa extends Allotjament {
 
     // Constructor
     // Hem d'afegir estadaMinimaAlta i baixa perquè casa és un intermediari i depenent del tipus de casa, aquestes variables varien
-    public Casa (String nom_, String idAllotjament, long estadaMinimaAlta, long estadaMinimaBaixa, String mida, int habitacions, int placesPersones) {
+    public Casa (String nom_, String idAllotjament, boolean operatiu, String iluminacio, long estadaMinimaAlta,
+                 long estadaMinimaBaixa, String mida, int habitacions, int placesPersones) {
+
         // Cridem al constructor pare
-        super(nom_, idAllotjament, estadaMinimaAlta, estadaMinimaBaixa);
+        super(nom_, idAllotjament, estadaMinimaAlta, estadaMinimaBaixa, operatiu, iluminacio);
 
         setMida(mida);  // Utilitzem setMida per controlar els valors d'aquest atribut
         this.habitacions = habitacions;

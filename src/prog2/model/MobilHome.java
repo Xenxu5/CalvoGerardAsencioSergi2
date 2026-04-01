@@ -5,8 +5,10 @@ public class MobilHome extends Casa {
     private boolean terrassaBarbacoa;
 
     // Constructor
-    public MobilHome (String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
-        super(nom_, idAllotjament_, 5L, 3L, mida, habitacions, placesPersones);
+    public MobilHome (String nom_, String idAllotjament_, boolean operatiu, String iluminacio,
+                      String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
+
+        super(nom_, idAllotjament_, operatiu, iluminacio, 5L, 3L, mida, habitacions, placesPersones);
 
         this.terrassaBarbacoa = terrassaBarbacoa;
     }
@@ -16,23 +18,6 @@ public class MobilHome extends Casa {
 
     public void setTerrassaBarbacoa(boolean terrassaBarbacoa) {
         this.terrassaBarbacoa = terrassaBarbacoa;
-    }
-
-    // Mètode concret d'objecte: correcteFuncionament()
-
-    /**
-     * Mètode que comprova el correcte funcionament de MobilHome
-     * @return isCorrecte (true/false)
-     */
-    @Override
-    public boolean correcteFuncionament() {
-        boolean isCorrecte = false;  // Inicialitzem una variable en fals
-
-        if (terrassaBarbacoa) {  // Comprovació
-            isCorrecte = true;
-        }
-
-        return isCorrecte;
     }
 
     /**

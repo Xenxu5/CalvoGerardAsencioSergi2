@@ -6,8 +6,11 @@ public class Glamping extends Casa {
     private String material;
 
     // Constructor
-    public Glamping(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
-        super(nom_, idAllotjament_, 3L, 3L, mida, habitacions, placesPersones);
+    public Glamping(String nom_, String idAllotjament_, boolean operatiu, String iluminacio,
+                    String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
+
+        super(nom_, idAllotjament_, operatiu, iluminacio, 3L, 3L,
+                mida, habitacions, placesPersones);
 
         this.casaMascota = casaMascota;
         setMaterial(material);  // Utilitzem setMaterial per controlar el valor de l'atribut material
@@ -38,22 +41,6 @@ public class Glamping extends Casa {
         }
     }
 
-    // Mètode concret d'objecte: correcteFuncionament()
-
-    /**
-     * Mètode que comprova el correcte funcionament de glamping
-     * @return isCorrecte (true/false)
-     */
-    @Override
-    public boolean correcteFuncionament() {
-        boolean isCorrecte = false;  // Inicialitzem una variable en fals
-
-        if (casaMascota) {  // Comprovació
-            isCorrecte = true;
-        }
-
-        return isCorrecte;
-    }
 
     /**
      * Mètode toString per mostrar informació de les classes pares i de Glamping
