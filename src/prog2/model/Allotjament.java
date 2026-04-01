@@ -1,78 +1,51 @@
 package prog2.model;
 
 public abstract class Allotjament implements InAllotjament {
-    /**
-     * Modifica l'estat de l'allotjament a No Operatiu i la il·luminació depenent de la tasca rebuda com a paràmetre
-     *
-     * @param tasca Objecte de tipus TascaManteniment.
-     */
-    @Override
-    public void tancarAllotjament(TascaManteniment tasca) {
-
-    }
 
     /**
-     * Modifica l'estat de l'allotjament a Operatiu i la il·luminació al 100%
+     * Atributs privats
      */
-    @Override
-    public void obrirAllotjament() {
-
-    }
-
-    // Atributs privats
+    //Ja existents
     private String nom;
     private String id;
     private long estadaMinimaAlta;
     private long estadaMinimaBaixa;
+    // Nous
+    private boolean operatiu;
+    private String iluminacio;
 
-    // Constructor
-    public Allotjament(String nom, String id, long estadaMinimaAlta, long estadaMinimaBaixa) {
+
+    /**
+     * Constructor de allotjament
+     */
+    public Allotjament(String nom, String id, long estadaMinimaAlta, long estadaMinimaBaixa,
+                       boolean operatiu, String iluminacio) {
+        //Ja existents
         this.nom = nom;
         this.id = id;
         setEstadaMinima(estadaMinimaAlta, estadaMinimaBaixa);
+        // Nou
+        this.operatiu = operatiu;
+        this.iluminacio = iluminacio;
+
     }
 
-    // Mètodes
-
-    /**
-     * Obté el nom de l'allotjament.
-     *
-     * @return el nom de l'allotjament.
-     */
-    @Override
-    public String getNom() {
-        return nom;
-    }
 
     /**
-     * Estableix el nom de l'allotjament.
-     *
-     * @param nom el nom a assignar.
+     * Getters i setters de nom i de id del allotjament
      */
     @Override
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public String getNom() {return nom;}
 
-    /**
-     * Obté l'identificador únic de l'allotjament.
-     *
-     * @return l'identificador únic de l'allotjament.
-     */
     @Override
-    public String getId() {
-        return id;
-    }
+    public void setNom(String nom) {this.nom = nom;}
 
-    /**
-     * Estableix l'identificador únic de l'allotjament.
-     *
-     * @param id l'identificador a assignar.
-     */
     @Override
-    public void setId(String id) {
-        this.id = id;
-    }
+    public String getId() {return id;}
+
+    @Override
+    public void setId(String id) {this.id = id;}
+
 
     /**
      * Obté l'estada mínima segons la temporada.
@@ -106,9 +79,39 @@ public abstract class Allotjament implements InAllotjament {
         this.estadaMinimaBaixa = estadaMinimaBAIXA_;
     }
 
-    // No implementem el mètode de correcteFuncionament() ja que és abstracte i l'implementarem a les subclasses
+    /* Estat del allotjament **/
 
-    // Mètodes extra
+    /**
+     * @return si es operatiu o no
+     */
+    public boolean isOperatiu() {
+        return operatiu;
+    }
+
+    public String getIluminacio() {
+        return iluminacio;
+    }
+
+
+    /**
+     * Modifica l'estat de l'allotjament a No Operatiu i la il·luminació depenent de la tasca rebuda com a paràmetre
+     *
+     * @param tasca Objecte de tipus TascaManteniment.
+     */
+    @Override
+    public void tancarAllotjament(TascaManteniment tasca) {
+        operatiu = false;
+        iluminacio = tasca.getIluminacioAllotjament();
+    }
+
+    /**
+     * Modifica l'estat de l'allotjament a Operatiu i la il·luminació al 100%
+     */
+    @Override
+    public void obrirAllotjament() {
+        operatiu = true;
+        iluminacio = "100%";
+    }
 
     /**
      * Mètode per mostrar informació de l'allotjament i ser aprofitat en cada subclasse d'aquest
@@ -118,7 +121,9 @@ public abstract class Allotjament implements InAllotjament {
     public String toString() {
         // Mètode que es cridarà en les subclasses ja que aquestes variables les tenen totes les subclasses
 
-        return "Nom=" + nom + ", Id=" + id + ", estada mínima en temp ALTA: " + estadaMinimaAlta + ", estada mínima en temp BAIXA: " + estadaMinimaBaixa + ".";
+        return "Nom=" + nom + ", Id=" + id + ", estada mínima en temp ALTA: "
+                + estadaMinimaAlta + ", estada mínima en temp BAIXA: " + estadaMinimaBaixa +
+                ", operatiu=" + operatiu + ", iluminacio=" + iluminacio + ".";
     }
 }
 
