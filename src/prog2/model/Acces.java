@@ -1,6 +1,24 @@
 package prog2.model;
 
-public class Acces implements InAcces{
+public abstract class Acces implements InAcces{
+    /**
+     * Atributs privats
+     */
+    private String nom;
+    private boolean estat;
+    private LlistaAllotjaments aAllotjaments;
+
+    /**
+     * Constructor d'acces
+     */
+
+    public Acces (String nom, boolean estat){
+        this.nom = nom;
+        this.estat= estat;
+        this.aAllotjaments = new LlistaAllotjaments();
+    }
+
+
     /**
      * Afegeix un allotjament rebut com a paràmetre a la llista d'allotjaments de l'accés
      *
@@ -8,7 +26,9 @@ public class Acces implements InAcces{
      */
     @Override
     public void afegirAllotjament(Allotjament allotjament) {
-
+        if (allotjament != null) {
+            aAllotjaments.afegirAllotjament(allotjament);
+        }
     }
 
     /**
@@ -16,7 +36,7 @@ public class Acces implements InAcces{
      */
     @Override
     public void tancarAcces() {
-
+        this.estat =false;
     }
 
     /**
@@ -24,7 +44,7 @@ public class Acces implements InAcces{
      */
     @Override
     public void obrirAcces() {
-
+        this.estat =true;
     }
 
     /**
@@ -33,9 +53,7 @@ public class Acces implements InAcces{
      * @return
      */
     @Override
-    public boolean isAccessibilitat() {
-        return false;
-    }
+    public abstract boolean isAccessibilitat();
 
     /**
      * Retorna el nom de l'accés
@@ -44,7 +62,7 @@ public class Acces implements InAcces{
      */
     @Override
     public String getNom() {
-        return "";
+        return nom;
     }
 
     /**
@@ -54,7 +72,7 @@ public class Acces implements InAcces{
      */
     @Override
     public boolean getEstat() {
-        return false;
+        return estat;
     }
 
     /**
@@ -64,6 +82,6 @@ public class Acces implements InAcces{
      */
     @Override
     public LlistaAllotjaments getAAllotjaments() {
-        return null;
+        return aAllotjaments;
     }
 }

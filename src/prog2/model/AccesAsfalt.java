@@ -1,0 +1,36 @@
+package prog2.model;
+
+public abstract class AccesAsfalt extends Acces{
+    /**
+     * Atribut privat dels metres d'asfalt
+     */
+    private int metresAsfalt;
+
+    /**
+     * Constructor d'acces asfalt
+     */
+    public AccesAsfalt(String nom, boolean estat, int metresAsfalt) {
+        super(nom, estat);
+        this.metresAsfalt = metresAsfalt;
+    }
+
+    /**
+     * Getter i setter dels metres d'asfalt
+     */
+    public int getMetresAsfalt() {
+        return metresAsfalt;
+    }
+
+    public void setMetresAsfalt(int metresAsfalt) {
+        this.metresAsfalt = metresAsfalt;
+    }
+
+    /**
+     * @return els metres que te d'asfalt
+     */
+    @Override
+    public String toString() {
+        return super.toString() + ", metres asfalt:" + metresAsfalt;
+    }
+}
+

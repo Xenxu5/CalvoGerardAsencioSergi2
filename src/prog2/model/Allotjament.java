@@ -1,6 +1,24 @@
 package prog2.model;
 
 public abstract class Allotjament implements InAllotjament {
+    /**
+     * Modifica l'estat de l'allotjament a No Operatiu i la il·luminació depenent de la tasca rebuda com a paràmetre
+     *
+     * @param tasca Objecte de tipus TascaManteniment.
+     */
+    @Override
+    public void tancarAllotjament(TascaManteniment tasca) {
+
+    }
+
+    /**
+     * Modifica l'estat de l'allotjament a Operatiu i la il·luminació al 100%
+     */
+    @Override
+    public void obrirAllotjament() {
+
+    }
+
     // Atributs privats
     private String nom;
     private String id;
