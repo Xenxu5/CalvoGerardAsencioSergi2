@@ -49,6 +49,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments{
      * Mira si la llista d'allotjaments conté l'allotjament rebut per paràmetre i retorna un booleà amb la informació.
      *
      * @param allotjament
+     *
      * @return boolean
      */
     @Override
