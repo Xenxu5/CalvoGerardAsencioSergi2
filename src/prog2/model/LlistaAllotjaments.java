@@ -1,8 +1,23 @@
 package prog2.model;
 
+
+import java.util.ArrayList;
 import prog2.vista.ExcepcioCamping;
 
 public class LlistaAllotjaments implements InLlistaAllotjaments{
+    /**
+     * Atribut privat (arraylist)
+     */
+    private ArrayList<Allotjament> allotjaments;
+
+    /**
+     * Constructor de LlistaAllotjaments
+     */
+    public LlistaAllotjaments() {
+        allotjaments = new ArrayList<>();
+    }
+
+
     /**
      * Afegeix un allotjament rebut per paràmetre a la llista d'allotjaments.
      *
@@ -12,6 +27,15 @@ public class LlistaAllotjaments implements InLlistaAllotjaments{
     @Override
     public void afegirAllotjament(Allotjament allotjament) throws ExcepcioCamping {
 
+        if (allotjament == null) {
+            throw new ExcepcioCamping("No es pot afegir l'allotjament ");
+        }
+
+        if (contains(allotjament)) {
+            throw new ExcepcioCamping("L'allotjament ja existeix.");
+        }
+
+        allotjaments.add(allotjament);
     }
 
     /**
@@ -19,7 +43,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments{
      */
     @Override
     public void buidar() {
-
+        allotjaments.clear();
     }
 
     /**
@@ -32,8 +56,23 @@ public class LlistaAllotjaments implements InLlistaAllotjaments{
      */
     @Override
     public String llistarAllotjaments(String estat) throws ExcepcioCamping {
-        return "";
+        String resultat = "";
+        boolean operatiuBuscat = estat.equalsIgnoreCase("Operatiu");
+
+        for (Allotjament a : allotjaments) {
+            if (a.isOperatiu() == operatiuBuscat) {
+                resultat += a.toString() + "\n";
+            }
+        }
+
+        if (resultat.isEmpty()) {
+            throw new ExcepcioCamping("No hi ha allotjaments en l'estat indicat.");
+        }
+
+        return resultat;
+
     }
+
 
     /**
      * Mira si la llista d'allotjaments conté algun allotjament operatiu.
@@ -42,7 +81,14 @@ public class LlistaAllotjaments implements InLlistaAllotjaments{
      */
     @Override
     public boolean containsAllotjamentOperatiu() {
+
+        for (Allotjament a : allotjaments) {
+            if (a.isOperatiu()) {
+                return true;
+            }
+        }
         return false;
+
     }
 
     /**
@@ -54,7 +100,16 @@ public class LlistaAllotjaments implements InLlistaAllotjaments{
      */
     @Override
     public boolean contains(Allotjament allotjament) {
+
+        if (allotjament == null) {return false;}
+
+        for (Allotjament a : allotjaments) {
+            if (a.getId().equals(allotjament.getId())) {
+                return true;
+            }
+        }
         return false;
+
     }
 
     /**
@@ -66,6 +121,13 @@ public class LlistaAllotjaments implements InLlistaAllotjaments{
      */
     @Override
     public Allotjament getAllotjament(String id) throws ExcepcioCamping {
-        return null;
+
+        for (Allotjament a : allotjaments) {
+            if (a.getId().equals(id)) {
+                return a;
+            }
+        }
+        throw new ExcepcioCamping("No existeix cap allotjament amb aquest id.");
     }
+
 }
