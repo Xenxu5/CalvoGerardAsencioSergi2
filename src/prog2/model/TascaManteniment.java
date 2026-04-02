@@ -2,13 +2,48 @@ package prog2.model;
 
 public class TascaManteniment implements InTascaManteniment{
     /**
+     * Enum
+     */
+    public static enum TipusTascaManteniment {
+        Reparacio,
+        Neteja,
+        RevisioTecnica,
+        Desinfeccio
+    }
+
+    /**
+     * Atributs privats
+     */
+    private int num;
+    private TipusTascaManteniment tipus;
+    private Allotjament allotjament;
+    private String data;
+    private int dies;
+
+    /**
+     * Constructor de TascaManteniment
+     */
+    public TascaManteniment(int num,TipusTascaManteniment tipus, Allotjament allotjament,String data, int dies) {
+        this.num = num;
+        this.tipus = tipus;
+        this.allotjament = allotjament;
+        this.data = data;
+        this.dies = dies;
+    }
+
+    /**
+     * Getters
+     */
+
+
+    /**
      * Retorna el número identificador de la tasca.
      *
      * @return int
      */
     @Override
     public int getNum() {
-        return 0;
+        return num;
     }
 
     /**
@@ -17,9 +52,7 @@ public class TascaManteniment implements InTascaManteniment{
      * @return TipusTascaManteniment
      */
     @Override
-    public TascaManteniment.TipusTascaManteniment getTipus() {
-        return null;
-    }
+    public TascaManteniment.TipusTascaManteniment getTipus() { return tipus;}
 
     /**
      * Retorna l'allotjament associat a la tasca.
@@ -28,7 +61,7 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public Allotjament getAllotjament() {
-        return null;
+        return allotjament;
     }
 
     /**
@@ -38,7 +71,7 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public String getData() {
-        return "";
+        return data;
     }
 
     /**
@@ -48,8 +81,13 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public int getDies() {
-        return 0;
+        return dies;
     }
+
+    /**
+     * Setters
+     */
+
 
     /**
      * Assigna un nou número identificador a la tasca.
@@ -58,7 +96,7 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public void setNum(int num_) {
-
+        this.num =num_;
     }
 
     /**
@@ -68,7 +106,7 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public void setTipus(TascaManteniment.TipusTascaManteniment tipus_) {
-
+        this.tipus = tipus_;
     }
 
     /**
@@ -78,7 +116,7 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public void setAllotjament(Allotjament allotjament_) {
-
+        this.allotjament = allotjament_;
     }
 
     /**
@@ -88,7 +126,7 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public void setData(String data_) {
-
+        this.data = data_;
     }
 
     /**
@@ -98,7 +136,7 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public void setDies(int dies_) {
-
+        this.dies = dies_;
     }
 
     /**
@@ -122,4 +160,14 @@ public class TascaManteniment implements InTascaManteniment{
                 return "100%";
         }
     }
+    /**
+     * Mètode per mostrar informació de la tasca de manteniment
+     * @return String amb la informació
+     */
+    @Override
+    public String toString() {
+        return "Tasca " + num + " | Tipus: " + tipus + " | Data: " + data +
+                " | Dies: " + dies + " | Allotjament: " + allotjament.getNom();
+    }
+
 }

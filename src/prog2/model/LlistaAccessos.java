@@ -2,7 +2,24 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
+import java.util.ArrayList;
+
 public class LlistaAccessos implements InLlistaAccessos{
+
+    /**
+     * Atribut privat (arraylist)
+     */
+    private ArrayList<Acces> accessos;
+
+    /**
+     * Constructor de LlistaAccesos
+     */
+    public LlistaAccessos() {
+        accessos = new ArrayList<>();
+    }
+
+
+
     /**
      * Afegeix un accés rebut per paràmetre a la llista d'accessos.
      *
@@ -11,7 +28,10 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public void afegirAcces(Acces acc) throws ExcepcioCamping {
-
+        if (acc == null) {
+            throw new ExcepcioCamping("L'accés no es vàlid.");
+        }
+        accessos.add(acc);
     }
 
     /**
@@ -19,7 +39,7 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public void buidar() {
-
+        accessos.clear();
     }
 
     /**
@@ -33,7 +53,19 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public String llistarAccessos(boolean estat) throws ExcepcioCamping {
-        return "";
+        String resultat = "";
+        for (Acces a : accessos) {
+            if (a.getEstat() == estat) {
+                resultat += a + "\n";
+            }
+        }
+
+        if (resultat.isEmpty()) {
+            throw new ExcepcioCamping("No hi ha accessos en l'estat indicat.");
+        }
+
+        return resultat;
+
     }
 
     /**
@@ -43,6 +75,18 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public void actualitzaEstatAccessos() throws ExcepcioCamping {
+
+        for (Acces acces : accessos) {
+
+            // Primer tanquem l'accés
+            acces.tancarAcces();
+
+            // Només s'obre si dona accés a algun allotjament operatiu
+            if (acces.getAAllotjaments().containsAllotjamentOperatiu()) {
+                acces.obrirAcces();
+            }
+        }
+
 
     }
 
@@ -54,8 +98,17 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public int calculaAccessosNoAccessibles() throws ExcepcioCamping {
-        return 0;
+        int comptador = 0;
+
+        for (Acces a : accessos) {
+            if (!a.isAccessibilitat()) {
+                comptador++;
+            }
+        }
+
+        return comptador;
     }
+
 
     /**
      * Itera sobre la llista d'accessos, i pels accessos de terra suma el total de metres (longitud) i ho retorna.
@@ -65,6 +118,16 @@ public class LlistaAccessos implements InLlistaAccessos{
      */
     @Override
     public float calculaMetresTerra() throws ExcepcioCamping {
-        return 0;
+        float total = 0;
+
+        for (Acces a : accessos) {
+            if (a instanceof AccesTerra) {
+                AccesTerra terra = (AccesTerra) a;
+                total += terra.getLongitud();
+            }
+        }
+
+        return total;
     }
+
 }
