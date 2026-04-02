@@ -109,7 +109,6 @@ public class TascaManteniment implements InTascaManteniment{
      */
     @Override
     public String getIluminacioAllotjament() {
-       /* esto lo he puesto yo, miralo
         switch (tipus) {
             case Reparacio:
                 return "50%";
@@ -121,6 +120,6 @@ public class TascaManteniment implements InTascaManteniment{
                 return "0%";
             default:
                 return "100%";
-        }*/
+        }
     }
 }
