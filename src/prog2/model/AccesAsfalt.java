@@ -30,7 +30,7 @@ public abstract class AccesAsfalt extends Acces{
      */
     @Override
     public String toString() {
-        return super.toString() + ", metres asfalt:" + metresAsfalt;
+        return super.toString() + ", metres asfalt:" + metresAsfalt + "m²";
     }
 }
 
