@@ -54,9 +54,9 @@ public class LlistaAccessos implements InLlistaAccessos{
     @Override
     public String llistarAccessos(boolean estat) throws ExcepcioCamping {
         String resultat = "";
-        for (Acces a : accessos) {
-            if (a.getEstat() == estat) {
-                resultat += a + "\n";
+        for (Acces acces : accessos) {
+            if (acces.getEstat() == estat) {
+                resultat += acces.toString() + "\n";
             }
         }
 
@@ -100,8 +100,8 @@ public class LlistaAccessos implements InLlistaAccessos{
     public int calculaAccessosNoAccessibles() throws ExcepcioCamping {
         int comptador = 0;
 
-        for (Acces a : accessos) {
-            if (!a.isAccessibilitat()) {
+        for (Acces acces : accessos) {
+            if (!acces.isAccessibilitat()) {
                 comptador++;
             }
         }
@@ -120,9 +120,9 @@ public class LlistaAccessos implements InLlistaAccessos{
     public float calculaMetresTerra() throws ExcepcioCamping {
         float total = 0;
 
-        for (Acces a : accessos) {
-            if (a instanceof AccesTerra) {
-                AccesTerra terra = (AccesTerra) a;
+        for (Acces acces : accessos) {
+            if (acces instanceof AccesTerra) {
+                AccesTerra terra = (AccesTerra) acces;
                 total += terra.getLongitud();
             }
         }
