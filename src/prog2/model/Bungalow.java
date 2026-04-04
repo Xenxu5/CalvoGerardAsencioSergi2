@@ -30,8 +30,7 @@ public class Bungalow extends Casa{
             case 1:
                 this.placesParquing = placesParquing;
                 break;
-            default:
-                System.out.println("El nùmero de places de parquing '" + placesParquing + "' no és vàlid.\nAssignació d'una plaça de parquing per defecte.");
+            default: // Assignem 1 plaça per defecte
                 this.placesParquing = 1;
                 break;
         }

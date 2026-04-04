@@ -35,7 +35,6 @@ public class Glamping extends Casa {
                 this.material = material;
                 break;
             default: // Per defecte, donem fusta
-                System.out.println("Material " + material + " no vàlid.\nAssignació de fusta per defecte");
                 this.material = "fusta";
                 break;
         }

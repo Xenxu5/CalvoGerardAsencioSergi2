@@ -26,7 +26,7 @@ public abstract class AccesAsfalt extends Acces{
     }
 
     /**
-     * @return els metres que te d'asfalt
+     * @return els metres que té d'asfalt
      */
     @Override
     public String toString() {

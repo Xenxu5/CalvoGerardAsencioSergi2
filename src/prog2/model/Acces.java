@@ -86,4 +86,14 @@ public abstract class Acces implements InAcces{
     public LlistaAllotjaments getAAllotjaments() {
         return aAllotjaments;
     }
+
+    /**
+     * Mostra informació de l'accés
+     * @return
+     */
+    @Override
+    public String toString() {
+
+        return "Nom=" + nom + ", estat=" + estat + ".";
+    }
 }

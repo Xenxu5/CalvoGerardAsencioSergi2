@@ -34,7 +34,6 @@ public abstract class Casa extends Allotjament {
                 this.mida = mida;
                 break;
             default:  // Si no és una opció vàlida, donem mitjana per defecte
-                System.out.println("Mida " + mida + " no vàlida.\nAssignació de mida mitjana per defecte.");
                 this.mida = "mitjana";
                 break;
         }
