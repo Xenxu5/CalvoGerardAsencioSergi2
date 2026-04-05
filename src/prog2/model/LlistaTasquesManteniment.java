@@ -1,8 +1,21 @@
 package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
+import java.util.ArrayList;
 
 public class LlistaTasquesManteniment implements InLlistaTasquesManteniment{
+
+    /**
+     * Atribut privat (Arraylist)
+     */
+    private ArrayList<TascaManteniment> tasques;
+
+    /**
+     * Constructor de LlistaTasquesManteniment
+     */
+    public LlistaTasquesManteniment() { tasques = new ArrayList<>(); }
+
+
     /**
      * Aquest mètode crea una tasca de manteniment amb la informació passada com a paràmetres
      * (número d'identificador, tipus, l'allotjament on s'ha produït, la data, i els dies esperats per completar-la) i l'afegeix a la llista.
@@ -19,6 +32,36 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment{
     @Override
     public void afegirTascaManteniment(int num, String tipus, Allotjament allotjament, String data, int dies) throws ExcepcioCamping {
 
+        // Comprovar si l'allotjament ja té una tasca activa
+        for (TascaManteniment t : tasques) {
+            if (t.getAllotjament().getId().equals(allotjament.getId())) {
+                throw new ExcepcioCamping("Aquest allotjament ja té una tasca de manteniment activa.");
+            }
+        }
+
+        // Comprovació del String tipus
+        TascaManteniment.TipusTascaManteniment tipusEnum = null;
+        boolean tipusTrobat = false;
+
+        for (TascaManteniment.TipusTascaManteniment t : TascaManteniment.TipusTascaManteniment.values()) {
+            // Si és un valor del enum, el tipus està bé
+            if (t.name().equalsIgnoreCase(tipus)) {
+                tipusEnum = t;
+                tipusTrobat = true;
+                break; // Si el trobem, parem de buscar
+            }
+        }
+
+        if (!tipusTrobat) {
+            throw new ExcepcioCamping("El tipus de tasca que es vol afegir no existeix.");
+        }
+
+        // Creem i afegim la tasca
+        TascaManteniment novaTasca = new TascaManteniment(num, tipusEnum, allotjament, data, dies);
+        tasques.add(novaTasca);
+
+        // Actualitzar estat
+        allotjament.tancarAllotjament(novaTasca);
     }
 
     /**
@@ -30,7 +73,21 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment{
     @Override
     public void completarTascaManteniment(TascaManteniment tasca) throws ExcepcioCamping {
 
+        if (tasca == null) {
+            throw new ExcepcioCamping("La tasca indicada no és vàlida.");
+        }
+
+        if (!tasques.contains(tasca)) {
+            throw new ExcepcioCamping("La tasca indicada no existeix.");
+        }
+
+        // Tornem a obrir l'allotjament abans d'eliminar la tasca
+        tasca.getAllotjament().obrirAllotjament();
+
+        // Eliminem la tasca de la llista
+        tasques.remove(tasca);
     }
+
 
     /**
      * Itera sobre la llista de tasques i retorna un String amb la informació de totes les tasques de manteniment.
@@ -41,7 +98,17 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment{
      */
     @Override
     public String llistarTasquesManteniment() throws ExcepcioCamping {
-        return "";
+
+        String resultat = "";
+        for (TascaManteniment t : tasques) { // Com no hi ha condició d'estat, els mostrem tots
+            resultat += t.toString() + "\n";
+        }
+
+        if (resultat.isEmpty()) {
+            throw new ExcepcioCamping("No hi ha tasques de manteniment a la llista.");
+        }
+
+        return resultat;
     }
 
     /**
@@ -54,6 +121,12 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment{
      */
     @Override
     public TascaManteniment getTascaManteniment(int num) throws ExcepcioCamping {
-        return null;
+
+        for (TascaManteniment t : tasques) {
+            if (t.getNum() == num) {
+                return t;
+            }
+        }
+        throw new ExcepcioCamping("No existeix cap tasca amb el número passat per paràmetre.");
     }
 }
