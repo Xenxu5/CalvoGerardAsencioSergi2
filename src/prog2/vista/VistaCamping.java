@@ -228,7 +228,7 @@ public class VistaCamping {
     private void guardarCamping(Scanner sc) {
         try {
             System.out.println("\n Guardar dades ");
-            System.out.print("Introdueix el nom del fitxer (ex: dades.dat): ");
+            System.out.print("Introdueix el nom del fitxer (ex: dades.txt): ");
             String nomFitxer = sc.nextLine();
 
             camping.save(nomFitxer);
