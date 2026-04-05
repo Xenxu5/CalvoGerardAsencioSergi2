@@ -4,137 +4,119 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import prog2.vista.ExcepcioCamping;
 
-
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CampingTest {
 
     private Camping camping;
-    private LocalDate dataEntrada;
-    private LocalDate dataSortida;
 
     @BeforeEach
     void setUp() {
         camping = new Camping("Camping Test");
-
-        dataEntrada = LocalDate.of(2026, 5, 1);
-        dataSortida = LocalDate.of(2026, 5, 10);
-
+        camping.inicialitzaDadesCamping();
     }
 
-    // -------------------------
+    // ---------------------------------
     // Constructor i getters
-    // -------------------------
+    // ---------------------------------
     @Test
     void testConstructor() {
-        assertEquals("Camping Test", camping.getNom());
-        assertEquals(0, camping.getNumAllotjaments());
-        assertEquals(0, camping.getNumClients());
-        assertEquals(0, camping.getNumReserves());
+        assertEquals("Camping Test", camping.getNomCamping());
     }
 
-    // -------------------------
-    // Clients
-    // -------------------------
-    @Test
-    void testAfegirClient() throws ExcepcioCamping {
-        camping.afegirClient("Anna", "12345678A");
-
-        assertEquals(1, camping.getNumClients());
-        assertEquals("Anna", camping.getLlistaClients().get(0).getNom());
-        assertEquals("12345678A", camping.getLlistaClients().get(0).getDni());
-    }
-
-    // -------------------------
+    // ---------------------------------
     // Allotjaments
-    // -------------------------
+    // ---------------------------------
     @Test
-    void testAfegirAllotjaments() {
-        camping.afegirParcela("Parcela 1", "P1", 30.5f, true);
+    void testLlistarAllotjamentsOperatius() throws ExcepcioCamping {
+        String resultat = camping.llistarAllotjaments("Operatiu");
+        assertNotNull(resultat);
+        assertFalse(resultat.isEmpty());
+    }
 
-        camping.afegirBungalow(
-                "Bungalow 1", "B1", "Gran",
-                2, 4, 1, true, true, true
+    @Test
+    void testLlistarAllotjamentsNoOperatiusSenseTasques() {
+        assertThrows(ExcepcioCamping.class, () ->
+                camping.llistarAllotjaments("No Operatiu")
         );
-        assertEquals(2, camping.getNumAllotjaments());
     }
 
-
-    // -------------------------
-    // Reserves
-    // -------------------------
+    // ---------------------------------
+    // Tasques de manteniment
+    // ---------------------------------
     @Test
-    void testAfegirReservaCorrecta() throws ExcepcioReserva {
-        camping.afegirClient("Joan", "11111111A");
-        camping.afegirParcela("Parcela 1", "P1", 25f, true);
+    void testAfegirTascaManteniment() throws ExcepcioCamping {
 
-
-        camping.afegirReserva("P1", "11111111A", dataEntrada, dataSortida);
-
-        assertEquals(1, camping.getNumReserves());
-    }
-
-    @Test
-    void testAfegirReservaAllotjamentNoExisteix() throws ExcepcioReserva {
-        // Intentem fer una reserva amb un id d'allotjament que no existeix
-        camping.afegirClient("Joan", "11111111A");
-
-        ExcepcioReserva ex = assertThrows(ExcepcioReserva.class, () ->
-                camping.afegirReserva("NO_EXISTEIX", "11111111A", dataEntrada, dataSortida)
+        camping.afegirTascaManteniment(
+                1,
+                "Reparacio",
+                "ALL1",
+                "01/04/2026",
+                3
         );
 
-        assertEquals("L'allotjament amb id NO_EXISTEIX no existeix", ex.getMessage());
+        String noOperatius = camping.llistarAllotjaments("No Operatiu");
+        assertTrue(noOperatius.contains("ALL1"));
     }
 
     @Test
-    void testAfegirReservaClientNoExisteix() {
-        // Intentem fer una reserva amb un DNI de client que no existeix
-        camping.afegirParcela("Parcela 1", "P1", 25f, true);
+    void testCompletarTascaManteniment() throws ExcepcioCamping {
 
-        ExcepcioReserva ex = assertThrows(ExcepcioReserva.class, () ->
-                camping.afegirReserva("P1", "99999999Z", dataEntrada, dataSortida)
+        camping.afegirTascaManteniment(
+                2,
+                "Neteja",
+                "ALL2",
+                "02/04/2026",
+                2
         );
 
-        assertEquals("El client amb DNI 99999999Z no existeix", ex.getMessage());
-    }
+        camping.completarTascaManteniment(2);
 
-    // -------------------------
-    // Càlculs
-    // -------------------------
-    @Test
-    void testCalculAllotjamentsOperatius() {
-        camping.afegirParcela("Parcela 1", "P1", 20f, true);
-        camping.afegirParcela("Parcela 2", "P2", 20f, false);
-
-        int operatius = camping.calculAllotjamentsOperatius();
-
-        assertTrue(operatius >= 0);
-        assertTrue(operatius <= camping.getNumAllotjaments());
-    }
-
-    // -------------------------
-    // Temporades
-    // -------------------------
-    @Test
-    void testGetTemporadaAlta() {
-        LocalDate data = LocalDate.of(2026, 7, 15);
-        assertEquals(InAllotjament.Temp.ALTA, Camping.getTemporada(data));
+        String operatius = camping.llistarAllotjaments("Operatiu");
+        assertTrue(operatius.contains("ALL2"));
     }
 
     @Test
-    void testGetTemporadaBaixa() {
-        LocalDate data = LocalDate.of(2026, 1, 10);
-        assertEquals(InAllotjament.Temp.BAIXA, Camping.getTemporada(data));
+    void testAfegirDuesTasquesMateixAllotjament() throws ExcepcioCamping {
+
+        camping.afegirTascaManteniment(
+                3,
+                "Neteja",
+                "ALL3",
+                "03/04/2026",
+                2
+        );
+
+        assertThrows(ExcepcioCamping.class, () ->
+                camping.afegirTascaManteniment(
+                        4,
+                        "Reparacio",
+                        "ALL3",
+                        "04/04/2026",
+                        3
+                )
+        );
+    }
+
+    // ---------------------------------
+    // Accessos
+    // ---------------------------------
+    @Test
+    void testLlistarAccessosOberts() throws ExcepcioCamping {
+        String resultat = camping.llistarAccessos("Obert");
+        assertNotNull(resultat);
+        assertFalse(resultat.isEmpty());
     }
 
     @Test
-    void testGetTemporada() {
-        // Comprova que la temporada de 4 dates diferents es torna correctament.
-        assertEquals(InAllotjament.Temp.ALTA, Camping.getTemporada(LocalDate.of(2026, 6, 1)));
-        assertEquals(InAllotjament.Temp.BAIXA, Camping.getTemporada(LocalDate.of(2026, 12, 1)));
-        assertEquals(InAllotjament.Temp.ALTA, Camping.getTemporada(LocalDate.of(2026, 3, 21)));
-        assertEquals(InAllotjament.Temp.BAIXA, Camping.getTemporada(LocalDate.of(2026, 3, 20)));
+    void testCalculAccessosNoAccessibles() {
+        int noAccessibles = camping.calculaAccessosNoAccessibles();
+        assertTrue(noAccessibles >= 0);
+    }
+
+    @Test
+    void testCalculMetresTerra() {
+        float metres = camping.calculaMetresTerra();
+        assertTrue(metres > 0);
     }
 }
