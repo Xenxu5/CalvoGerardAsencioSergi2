@@ -4,7 +4,7 @@ package prog2.vista;
  *
  * @author lauraigual
  */
-//AQUI NO HAY Q TOCAR NADA NI AÑADIR NI QUITAR
+
 public class IniciadorCamping {
     
     /**
