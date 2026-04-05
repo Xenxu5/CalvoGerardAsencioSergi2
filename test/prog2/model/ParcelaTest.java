@@ -18,7 +18,7 @@ public class ParcelaTest {
     // Constructor i getters
     // -------------------------
     @Test
-    void constructorValid() {
+    void comprovarConstructor() {
         Parcela p = new Parcela("Parcela B", "P002", true, "100%", 30.5f, false);
 
         assertEquals("Parcela B", p.getNom());
