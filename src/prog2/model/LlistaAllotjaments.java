@@ -1,10 +1,11 @@
 package prog2.model;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.ExcepcioCamping;
 
-public class LlistaAllotjaments implements InLlistaAllotjaments{
+public class LlistaAllotjaments implements InLlistaAllotjaments, Serializable {
     /**
      * Atribut privat (arraylist)
      */

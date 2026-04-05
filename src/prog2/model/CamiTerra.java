@@ -5,7 +5,7 @@ public class CamiTerra extends AccesTerra {
     /**
      * Constructor de Cami de terra
      */
-    public CamiTerra(String nom, boolean estat, int longitud) {
+    public CamiTerra(String nom, boolean estat, float longitud) {
         super(nom, estat, longitud);
     }
 

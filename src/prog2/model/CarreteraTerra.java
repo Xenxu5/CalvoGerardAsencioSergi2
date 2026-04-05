@@ -4,12 +4,12 @@ public class CarreteraTerra extends AccesTerra {
     /**
      * Atribut privat de l'amplada
      */
-    private int amplada; // en metres
+    private float amplada; // en metres
 
     /**
      * Constructor de carretera de terra
      */
-    public CarreteraTerra(String nom, boolean estat, int longitud, int amplada) {
+    public CarreteraTerra(String nom, boolean estat, float longitud, float amplada) {
         super(nom, estat, longitud);
         this.amplada = amplada;
     }
@@ -17,11 +17,11 @@ public class CarreteraTerra extends AccesTerra {
     /**
      * Geter i setter de l'amplada
      */
-    public int getAmplada() {
+    public float getAmplada() {
         return amplada;
     }
 
-    public void setAmplada(int amplada) {
+    public void setAmplada(float amplada) {
         this.amplada = amplada;
     }
 

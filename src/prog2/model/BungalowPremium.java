@@ -7,7 +7,7 @@ public class BungalowPremium extends Bungalow{
 
     // Constructor
     public BungalowPremium(String nom_, String idAllotjament_, boolean operatiu, String iluminacio,
-                           String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa,
+                           float mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa,
                            boolean tv, boolean aireFred, boolean serveisExtra, String codiWifi) {
 
         super(nom_, idAllotjament_, operatiu, iluminacio, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred);

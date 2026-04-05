@@ -4,12 +4,12 @@ public abstract class AccesTerra extends Acces {
     /**
      * Atribut privat de la longitud
      */
-    private int longitud;
+    private float longitud;
 
     /**
      * Constructor d'acces terra
      */
-    public AccesTerra(String nom, boolean estat, int longitud) {
+    public AccesTerra(String nom, boolean estat, float longitud) {
         super(nom, estat);
         this.longitud = longitud;
     }
@@ -17,9 +17,9 @@ public abstract class AccesTerra extends Acces {
     /**
      * Getter i setter de la lontigut
      */
-    public int getLongitud() {return longitud;}
+    public float getLongitud() {return longitud;}
 
-    public void setLongitud(int longitud) {this.longitud = longitud;}
+    public void setLongitud(float longitud) {this.longitud = longitud;}
 
     /**
      * @return la longitud del cami

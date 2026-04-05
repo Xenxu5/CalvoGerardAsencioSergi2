@@ -6,7 +6,7 @@ public class Bungalow extends Casa{
     private boolean terrassa, tv, aireFred;
 
     // Constructor
-    public Bungalow(String nom_, String idAllotjament_, boolean operatiu, String iluminacio, String mida,
+    public Bungalow(String nom_, String idAllotjament_, boolean operatiu, String iluminacio, float mida,
                     int habitacions, int placesPersones, int placesParquing,
                     boolean terrassa, boolean tv, boolean aireFred){
 

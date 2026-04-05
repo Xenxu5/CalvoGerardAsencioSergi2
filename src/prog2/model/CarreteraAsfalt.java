@@ -4,12 +4,12 @@ public class CarreteraAsfalt extends AccesAsfalt {
     /**
      * Atribut privat del pes maxim
      */
-    private int pesMaxim; // en kg
+    private float pesMaxim; // en kg
 
     /**
      * Constructor de carretera d'asfalt
      */
-    public CarreteraAsfalt(String nom, boolean estat, int metresAsfalt, int pesMaxim) {
+    public CarreteraAsfalt(String nom, boolean estat, float metresAsfalt, float pesMaxim) {
         super(nom, estat, metresAsfalt);
         this.pesMaxim = pesMaxim;
     }
@@ -17,11 +17,11 @@ public class CarreteraAsfalt extends AccesAsfalt {
     /**
      * Geter i setter del pes maxim
      */
-    public int getPesMaxim() {
+    public float getPesMaxim() {
         return pesMaxim;
     }
 
-    public void setPesMaxim(int pesMaxim) {
+    public void setPesMaxim(float pesMaxim) {
         this.pesMaxim = pesMaxim;
     }
 

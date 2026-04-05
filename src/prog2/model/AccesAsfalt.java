@@ -4,12 +4,12 @@ public abstract class AccesAsfalt extends Acces{
     /**
      * Atribut privat dels metres d'asfalt
      */
-    private int metresAsfalt;
+    private float metresAsfalt;
 
     /**
      * Constructor d'acces asfalt
      */
-    public AccesAsfalt(String nom, boolean estat, int metresAsfalt) {
+    public AccesAsfalt(String nom, boolean estat, float metresAsfalt) {
         super(nom, estat);
         this.metresAsfalt = metresAsfalt;
     }
@@ -17,7 +17,7 @@ public abstract class AccesAsfalt extends Acces{
     /**
      * Getter i setter dels metres d'asfalt
      */
-    public int getMetresAsfalt() {
+    public float getMetresAsfalt() {
         return metresAsfalt;
     }
 

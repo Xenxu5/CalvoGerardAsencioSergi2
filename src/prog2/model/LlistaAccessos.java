@@ -2,9 +2,10 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LlistaAccessos implements InLlistaAccessos{
+public class LlistaAccessos implements InLlistaAccessos, Serializable {
 
     /**
      * Atribut privat (arraylist)
@@ -74,7 +75,7 @@ public class LlistaAccessos implements InLlistaAccessos{
      * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     @Override
-    public void actualitzaEstatAccessos() throws ExcepcioCamping {
+    public void actualitzaEstatAccessos() {
 
         for (Acces acces : accessos) {
 
@@ -97,7 +98,7 @@ public class LlistaAccessos implements InLlistaAccessos{
      * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     @Override
-    public int calculaAccessosNoAccessibles() throws ExcepcioCamping {
+    public int calculaAccessosNoAccessibles() {
         int comptador = 0;
 
         for (Acces acces : accessos) {
@@ -117,7 +118,7 @@ public class LlistaAccessos implements InLlistaAccessos{
      * @throws ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     @Override
-    public float calculaMetresTerra() throws ExcepcioCamping {
+    public float calculaMetresTerra() {
         float total = 0;
 
         for (Acces acces : accessos) {

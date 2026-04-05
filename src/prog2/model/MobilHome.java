@@ -6,7 +6,7 @@ public class MobilHome extends Casa {
 
     // Constructor
     public MobilHome (String nom_, String idAllotjament_, boolean operatiu, String iluminacio,
-                      String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
+                      float mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
 
         super(nom_, idAllotjament_, operatiu, iluminacio, 5L, 3L, mida, habitacions, placesPersones);
 

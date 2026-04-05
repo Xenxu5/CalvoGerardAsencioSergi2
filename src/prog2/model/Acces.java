@@ -2,7 +2,9 @@ package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
 
-public abstract class Acces implements InAcces{
+import java.io.Serializable;
+
+public abstract class Acces implements InAcces, Serializable {
     /**
      * Atributs privats
      */

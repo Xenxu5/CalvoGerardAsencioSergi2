@@ -4,7 +4,7 @@ public class CamiAsfalt extends AccesAsfalt {
     /**
      * Constructor de Cami Asfalt
      */
-    public CamiAsfalt(String nom, boolean estat, int metresAsfalt) {
+    public CamiAsfalt(String nom, boolean estat, float metresAsfalt) {
         super(nom, estat, metresAsfalt);
     }
 

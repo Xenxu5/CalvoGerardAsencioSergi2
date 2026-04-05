@@ -7,7 +7,7 @@ public class Glamping extends Casa {
 
     // Constructor
     public Glamping(String nom_, String idAllotjament_, boolean operatiu, String iluminacio,
-                    String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
+                    float mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
 
         super(nom_, idAllotjament_, operatiu, iluminacio, 3L, 3L,
                 mida, habitacions, placesPersones);
