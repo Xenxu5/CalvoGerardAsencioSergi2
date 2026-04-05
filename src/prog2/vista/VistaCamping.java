@@ -118,6 +118,9 @@ public class VistaCamping {
 
     // Mètodes privats auxiliars per fer les funcions
 
+    /**
+     * Opció 1 menu
+     */
     private void llistarTotsAllotjaments() {
         try {
             System.out.println("\n Llista de tots els allotjaments");
@@ -129,6 +132,10 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opcions 2 i 3 menu
+     * @param estat
+     */
     private void llistarAllotjamentsEstat(String estat) {
         try {
             System.out.println("\n Llista d'allotjaments (" + estat.toUpperCase() + ")");
@@ -139,6 +146,10 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opció 4 i 5 menu
+     * @param estat
+     */
     private void llistarAccessosEstat(String estat) {
         try {
             System.out.println("\n Llista d'accessos (" + estat.toUpperCase() + ")");
@@ -149,6 +160,9 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opció 6 menu
+     */
     private void llistarTasquesManteniment() {
         try {
             System.out.println("\n Tasques manteniment ");
@@ -159,6 +173,10 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opció 7 menu
+     * @param sc
+     */
     private void afegirTascaManteniment(Scanner sc) {
         try {
             System.out.println("\n Afegir tasca manteniment ");
@@ -188,6 +206,10 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opció 8 menu
+     * @param sc
+     */
     private void completarTascaManteniment(Scanner sc) {
         try {
             System.out.println("\n Completar tasca de manteniment ");
@@ -207,6 +229,9 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opció 9 menu
+     */
     private void mostrarAccessosSenseVehicle() {
         try { //
             int quantitat = camping.calculaAccessosNoAccessibles();
@@ -216,6 +241,9 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opció 10 menu
+     */
     private void mostrarMetresTerra() {
         try {
             float metres = camping.calculaMetresTerra();
@@ -225,6 +253,10 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opció 11 menu
+     * @param sc
+     */
     private void guardarCamping(Scanner sc) {
         try {
             System.out.println("\n Guardar dades ");
@@ -238,6 +270,10 @@ public class VistaCamping {
         }
     }
 
+    /**
+     * Opció 12 menu
+     * @param sc
+     */
     private void recuperarCamping(Scanner sc) {
         try {
             System.out.println("\n Recuperar dades ");
