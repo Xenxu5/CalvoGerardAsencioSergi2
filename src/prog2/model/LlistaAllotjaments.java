@@ -58,11 +58,20 @@ public class LlistaAllotjaments implements InLlistaAllotjaments, Serializable {
     @Override
     public String llistarAllotjaments(String estat) throws ExcepcioCamping {
         String resultat = "";
-        boolean operatiuBuscat = estat.equalsIgnoreCase("Operatiu");
+
+
 
         for (Allotjament a : allotjaments) {
-            if (a.isOperatiu() == operatiuBuscat) {
+            // Aquest if ens permet mostrar tots si l'estat és tots i així podem complir la primera opció del menu
+            if (estat.equalsIgnoreCase("Tots")) {
                 resultat += a.toString() + "\n";
+            }
+            // Filtrem els allotjaments segons si és operatiu o no
+            else {
+                boolean operatiuBuscat = estat.equalsIgnoreCase("Operatiu"); // Si posen operatiu, l'estat és true, sino no ho és
+                if (a.isOperatiu() == operatiuBuscat) {
+                    resultat += a.toString() + "\n";
+                }
             }
         }
 

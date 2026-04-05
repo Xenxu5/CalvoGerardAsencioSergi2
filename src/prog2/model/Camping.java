@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.io.*;
 
-public class Camping implements InCamping {
+public class Camping implements InCamping, Serializable {
 
     /**
      * Atributs privats
